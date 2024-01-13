@@ -1,0 +1,4 @@
+{
+  "name": "Surat Keterangan Lulus (SKL)",
+  "require": ["fcijazah", "fcskripsi", "pasfoto", "fcsuratkti", "skbebaspustakateknik", "buktits", "fcslipukt", "khsfull", "khspendek", "nilaipklkkn"]
+}

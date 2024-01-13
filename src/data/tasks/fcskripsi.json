@@ -1,0 +1,5 @@
+{
+  "content": "Fotocopy halaman judul, halaman pengesahan, halaman pernyataan keaslian skripsi, dan halaman abstrak berbahasa Inggris",
+  "quantity": 1,
+  "require": ["ttdskripsi"]
+}

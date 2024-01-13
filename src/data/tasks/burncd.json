@@ -1,0 +1,4 @@
+{
+  "content": "Burn CD yang isinya file skripsi yang sudah ditandatangai (docx dan pdf), file paper (docx dan pdf), pas foto berwarna",
+  "require": ["ttdskripsi", "pasfoto"]
+}

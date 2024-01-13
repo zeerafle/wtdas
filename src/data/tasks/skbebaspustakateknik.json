@@ -1,0 +1,4 @@
+{
+  "content": "Surat Keterangan Bebas Pustaka & Surat Bukti Penyerahan Skripsi dari Perpustakaan Fakultas Teknik (Asli)",
+  "require": ["ttdbukukaprodi", "jilidttdskripsi", "burncd"]
+}
