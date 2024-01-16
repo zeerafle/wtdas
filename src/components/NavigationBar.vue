@@ -5,7 +5,7 @@ import CountNumber from "./CountNumber.vue";
 <template>
   <nav class="flex bg-prairie-sand p-2 text-left overflow-hidden relative">
     <div
-      class="absolute inset-x-0 bottom-0 h-1 bg-white rounded-t-full shadow"
+      class="absolute inset-x-0 bottom-0 h-1 bg-zinc-800 rounded-t-full shadow"
     ></div>
     <span class="font-medieval-sharp text-white p-1.5 text-wrap"
       >Wisuda Gelombang 1 (Maret)</span
