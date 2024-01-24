@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import MarkdownIt from "markdown-it";
 
 const emit = defineEmits(["update:show"]);
@@ -9,11 +9,16 @@ const close = () => emit("update:show", false);
 const markdown = new MarkdownIt();
 const markdownContent = ref("");
 
-onMounted(async () => {
+const fetchAndRenderMarkdown = async () => {
   const response = await fetch(props.markdownFile);
   const text = await response.text();
   markdownContent.value = markdown.render(text);
-});
+  console.log(props.markdownFile);
+};
+
+onMounted(fetchAndRenderMarkdown);
+
+watch(() => props.markdownFile, fetchAndRenderMarkdown);
 </script>
 
 <template>
