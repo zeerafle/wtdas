@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
 import MarkdownIt from "markdown-it";
+import { useLocalStorage } from "@vueuse/core";
 
 const markdown = new MarkdownIt();
 
 export const useTasksStore = defineStore("tasks", {
   state: () => ({
-    tasks: [
+    tasks: useLocalStorage("tasks", [
       {
         content: "Panduan",
         id: "welcome",
@@ -146,7 +147,7 @@ export const useTasksStore = defineStore("tasks", {
         id: "ttdskripsi",
         status: "Belum",
       },
-    ],
+    ]),
   }),
   getters: {
     getTasks: (state) => state.tasks,
