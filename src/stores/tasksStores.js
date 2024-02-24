@@ -1,12 +1,21 @@
 import { defineStore } from "pinia";
+import MarkdownIt from "markdown-it";
+
+const markdown = new MarkdownIt();
 
 export const useTasksStore = defineStore("tasks", {
   state: () => ({
     tasks: [
       {
+        content: "Panduan",
+        id: "welcome",
+        guide: "",
+      },
+      {
         content: "Beli buku yang direkomendasikan Prodi",
         quantity: 1,
         id: "belibuku",
+        guide: "",
       },
       {
         content: "Bukti telah mengisi Tracer Study Mahasiswa",
@@ -64,7 +73,11 @@ export const useTasksStore = defineStore("tasks", {
         quantity: 3,
         id: "pasfoto",
       },
-      { content: "Revisi dosen pembimbing", id: "revisidosen" },
+      {
+        content: "Revisi dosen pembimbing",
+        id: "revisidosen",
+        guide: "",
+      },
       { content: "Revisi sekertaris Dekan", id: "revisisekdekan" },
       {
         content:
@@ -113,5 +126,12 @@ export const useTasksStore = defineStore("tasks", {
       return (id) => state.tasks.find((task) => task.id === id);
     },
   },
-  actions: {},
+  actions: {
+    async fetchMarkdown(taskId, markdownFile) {
+      const response = await fetch(markdownFile);
+      const text = await response.text();
+      const task = this.getTaskById(taskId);
+      task.guide = markdown.render(text);
+    },
+  },
 });

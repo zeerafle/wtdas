@@ -1,24 +1,29 @@
 <script setup>
-import { onMounted, ref, watch } from "vue";
-import MarkdownIt from "markdown-it";
+import { ref, watch } from "vue";
+import { useTasksStore } from "../stores/tasksStores.js";
 
 const emit = defineEmits(["update:show"]);
-const props = defineProps(["show", "markdownFile"]);
+const props = defineProps(["show", "taskId"]);
 const close = () => emit("update:show", false);
 
-const markdown = new MarkdownIt();
-const markdownContent = ref("");
+const isDroppedDown = ref(false);
+const currentStatus = ref("Update status");
+const activeStatus = ref("Belum");
 
-const fetchAndRenderMarkdown = async () => {
-  const response = await fetch(props.markdownFile);
-  const text = await response.text();
-  markdownContent.value = markdown.render(text);
-  console.log(props.markdownFile);
+const setStatus = (status) => {
+  currentStatus.value = status;
+  activeStatus.value = status;
+  isDroppedDown.value = false;
 };
 
-onMounted(fetchAndRenderMarkdown);
+const taskStore = useTasksStore();
+const task = ref(null);
 
-watch(() => props.markdownFile, fetchAndRenderMarkdown);
+watch(props, (newProps) => {
+  if (newProps.taskId) {
+    task.value = taskStore.getTaskById(newProps.taskId);
+  }
+});
 </script>
 
 <template>
@@ -41,8 +46,53 @@ watch(() => props.markdownFile, fetchAndRenderMarkdown);
         <div
           id="markdown-content"
           class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4"
-          v-html="markdownContent"
+          v-html="task.guide"
         ></div>
+        <!--        status update-->
+        <div
+          class="px-4 sm:p-6 font-serif text-sm relative inline-flex rounded-md gap-1"
+        >
+          <span class="inline-flex items-center p-1">Status</span>
+          <button
+            class="inline-flex items-center rounded-r-md bg-gray-100 p-1 hover:bg-gray-200 gap-2"
+            @click="isDroppedDown = !isDroppedDown"
+          >
+            <span>{{ currentStatus }}</span>
+            <font-awesome-icon :icon="['fas', 'chevron-up']" />
+          </button>
+          <div
+            v-if="isDroppedDown"
+            class="absolute bottom-0 right-0 flex flex-col p-2 bg-white border border-gray-300 rounded-md shadow-lg z-10 w-36 gap-2 transition-all"
+          >
+            <button
+              :class="{
+                'bg-amber-50 text-prairie-sand font-serif px-3 py-1 rounded-xl':
+                  activeStatus === 'Belum',
+              }"
+              @click="setStatus('Belum')"
+            >
+              Belum
+            </button>
+            <button
+              :class="{
+                'bg-amber-50 text-prairie-sand font-serif px-3 py-1 rounded-xl':
+                  activeStatus === 'Selesai',
+              }"
+              @click="setStatus('Selesai')"
+            >
+              Selesai
+            </button>
+            <button
+              :class="{
+                'bg-amber-50 text-prairie-sand font-serif px-3 py-1 rounded-xl':
+                  activeStatus === 'Menunggu',
+              }"
+              @click="setStatus('Menunggu')"
+            >
+              Menunggu
+            </button>
+          </div>
+        </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
           <slot name="footer">
             <button

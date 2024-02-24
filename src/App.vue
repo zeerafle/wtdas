@@ -1,11 +1,23 @@
 <script setup>
 import NavigationBar from "./components/NavigationBar.vue";
 import BaseModal from "./components/BaseModal.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import TasksItem from "./components/TasksItem.vue";
+import { useTasksStore } from "./stores/tasksStores.js";
 
 const showModal = ref(false);
-const markdownFile = ref("/guides/welcome.md");
+const currentTaskId = ref("");
+const handleClickEvent = (id) => {
+  currentTaskId.value = id;
+};
+
+onMounted(async () => {
+  const tasksStore = useTasksStore();
+  const fetchPromises = tasksStore.getTasks.map((task) =>
+    tasksStore.fetchMarkdown(task.id, `guides/${task.id}.md`),
+  );
+  await Promise.all(fetchPromises);
+});
 </script>
 
 <template>
@@ -21,7 +33,7 @@ const markdownFile = ref("/guides/welcome.md");
     <button
       class="absolute rounded-xl bg-prairie-sand py-1.5 px-3.5 font-serif mt-2.5 text-amber-50 hover:bg-amber-50 hover:text-prairie-sand transition duration-300 ease-in-out"
       @click="
-        markdownFile = '/guides/welcome.md';
+        handleClickEvent('welcome');
         showModal = true;
       "
     >
@@ -31,14 +43,14 @@ const markdownFile = ref("/guides/welcome.md");
   <main>
     <TasksItem
       id="revisidosen"
-      @onclick="markdownFile = $event"
+      @onclick="handleClickEvent"
       @click="showModal = true"
     />
   </main>
   <BaseModal
     :show="showModal"
     @update:show="showModal = $event"
-    :markdown-file="markdownFile"
+    :task-id="currentTaskId"
   >
   </BaseModal>
 </template>

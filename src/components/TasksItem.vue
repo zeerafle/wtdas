@@ -1,7 +1,5 @@
 <script setup>
 import { useTasksStore } from "../stores/tasksStores.js";
-import { storeToRefs } from "pinia";
-import { computed } from "vue";
 
 const props = defineProps({
   id: {
@@ -15,14 +13,15 @@ const props = defineProps({
 });
 const emit = defineEmits(["onclick"]);
 const tasksStore = useTasksStore();
-const { getTaskById } = storeToRefs(tasksStore);
-
-const task = computed(() => getTaskById.value(props.id));
+const task = tasksStore.getTaskById(props.id);
+const handleClick = () => {
+  emit("onclick", props.id);
+};
 </script>
 
 <template>
   <button
-    @click="emit('onclick', `/guides/${task.id}.md`)"
+    @click="handleClick"
     class="relative flex flex-col items-center justify-center text-center mx-auto"
   >
     <font-awesome-icon
