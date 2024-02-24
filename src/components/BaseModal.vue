@@ -1,23 +1,20 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useTasksStore } from "../stores/tasksStores.js";
+import StatusButton from "./StatusButton.vue";
 
 const emit = defineEmits(["update:show"]);
 const props = defineProps(["show", "taskId"]);
 const close = () => emit("update:show", false);
 
-const isDroppedDown = ref(false);
-const currentStatus = ref("Update status");
-const activeStatus = ref("Belum");
-
-const setStatus = (status) => {
-  currentStatus.value = status;
-  activeStatus.value = status;
-  isDroppedDown.value = false;
-};
-
 const taskStore = useTasksStore();
 const task = ref(null);
+const isDroppedDown = ref(false);
+
+const setStatus = (status) => {
+  isDroppedDown.value = false;
+  taskStore.updateTaskStatus(props.taskId, status);
+};
 
 watch(props, (newProps) => {
   if (newProps.taskId) {
@@ -57,40 +54,28 @@ watch(props, (newProps) => {
             class="inline-flex items-center rounded-r-md bg-gray-100 p-1 hover:bg-gray-200 gap-2"
             @click="isDroppedDown = !isDroppedDown"
           >
-            <span>{{ currentStatus }}</span>
+            <span>{{ task.status }}</span>
             <font-awesome-icon :icon="['fas', 'chevron-up']" />
           </button>
           <div
             v-if="isDroppedDown"
             class="absolute bottom-0 right-0 flex flex-col p-2 bg-white border border-gray-300 rounded-md shadow-lg z-10 w-36 gap-2 transition-all"
           >
-            <button
-              :class="{
-                'bg-amber-50 text-prairie-sand font-serif px-3 py-1 rounded-xl':
-                  activeStatus === 'Belum',
-              }"
-              @click="setStatus('Belum')"
-            >
-              Belum
-            </button>
-            <button
-              :class="{
-                'bg-amber-50 text-prairie-sand font-serif px-3 py-1 rounded-xl':
-                  activeStatus === 'Selesai',
-              }"
-              @click="setStatus('Selesai')"
-            >
-              Selesai
-            </button>
-            <button
-              :class="{
-                'bg-amber-50 text-prairie-sand font-serif px-3 py-1 rounded-xl':
-                  activeStatus === 'Menunggu',
-              }"
-              @click="setStatus('Menunggu')"
-            >
-              Menunggu
-            </button>
+            <StatusButton
+              status="Belum"
+              :active-status="task.status"
+              @update="setStatus"
+            />
+            <StatusButton
+              status="Selesai"
+              :active-status="task.status"
+              @update="setStatus"
+            />
+            <StatusButton
+              status="Menunggu"
+              :active-status="task.status"
+              @update="setStatus"
+            />
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
