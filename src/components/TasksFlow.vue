@@ -50,11 +50,20 @@ const nodeClick = (nodeId) => {
     modalElement.showModal();
   }
 }
+
+const theme = computed(() => {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark'
+  } else {
+    return 'base'
+  }
+});
+
 </script>
 
 <template>
   <div class="w-full overflow-auto p-10">
-    <VueMermaidString :value="diagram" :options="{ securityLevel: 'loose' }" @node-click="nodeClick"
+    <VueMermaidString :value="diagram" :options="{ securityLevel: 'loose', theme:theme }" @node-click="nodeClick"
       class="w-full h-auto transform scale-100" />
   </div>
   <DialogItem id="revisidosen" />

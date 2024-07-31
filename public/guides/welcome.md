@@ -13,18 +13,11 @@ Setiap fase dikenal sebagai "Tugas". Tugas adalah kewajiban kecil yang harus dip
 (selesai, belum, menunggu). Gantilah status tugas menjadi selesai apabila engkau telah menyelesaikan tugas tersebut agar
 tugas selanjutnya yang tergantung pada tugas tersebut dapat dikerjakan.
 
-Tidak semua tugas tergantung pada tugas lainnya. Tugas yang mandiri dapat dikerjakan kapan saja. Meski begitu, setiap
-tugas akan diperlukan oleh tugas atau misi lainnya. Jadi, meskipun bisa dikerjakan kapan saja, tugas ini harus
-diselesaikan. Tugas yang mandiri dapat ditemukan dengan menekan tombol panah di sisi kanan layar.
+## Tugas Sampingan
 
-## Misi
-
-Misi adalah kumpulan tugas yang harus diselesaikan. Misi memiliki status (selesai, belum, menunggu). Misi dapat dianggap
-sebagai tugas besar atau poin kontrol. Misi dapat diselesaikan apabila semua tugas yang tergantung pada misi tersebut
-telah selesai.
-
-Progres Tugas dan Misi akan otomatis tersimpan di browsermu. Oleh karena itu, engkau bisa menjadikan portal ini sebagai
-daftar tugas.
+Tidak semua tugas tergantung pada tugas lainnya. Tugas sampingan dapat dikerjakan kapan saja. Meski begitu, setiap
+tugas sampingan akan diperlukan oleh tugas lainnya. Jadi, meskipun bisa dikerjakan kapan saja, tugas ini harus
+diselesaikan. Tugas sampingan dapat ditemukan dengan menekan tombol di sisi kiri layar.
 
 ---
 

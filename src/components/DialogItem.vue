@@ -20,12 +20,12 @@ onMounted(() => {
 
 <template>
   <dialog :id="props.id" class="modal modal-bottom sm:modal-middle">
-    <div class="modal-box">
+    <div class="modal-box"> 
       <div id="markdown-content" v-html="htmlContent"></div>
       <div class="modal-action">
         <form method="dialog">
           <!-- if there is a button in form, it will close the modal -->
-          <button class="btn">Close</button>
+          <button class="btn">Tutup</button>
         </form>
       </div>
     </div>
