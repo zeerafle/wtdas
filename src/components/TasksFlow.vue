@@ -41,6 +41,7 @@ const diagram = computed(() => endent`
     
     click revisisekdekan
     click revisidosen
+    click jilidskripsi
 `)
 
 const nodeClick = (nodeId) => {
@@ -62,9 +63,13 @@ const theme = computed(() => {
 </script>
 
 <template>
-  <div class="w-full overflow-auto p-10">
-    <VueMermaidString :value="diagram" :options="{ securityLevel: 'loose', theme:theme }" @node-click="nodeClick"
-      class="w-full h-auto transform scale-100" />
+  <div class="w-full px-10 flex items-center justify-center">
+    <div class="w-full max-w-4xl">
+      <VueMermaidString :value="diagram" :options="{ securityLevel: 'loose', theme: theme }" @node-click="nodeClick"
+        class="w-full h-auto" />
+    </div>
   </div>
   <DialogItem id="revisidosen" />
+  <DialogItem id="revisisekdekan" />
+  <DialogItem id="jilidskripsi" />
 </template>
