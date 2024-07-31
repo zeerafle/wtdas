@@ -28,7 +28,6 @@ export default {
           "error": "#D37676",
         }
       },
-      'dark'
     ]
   }
 };

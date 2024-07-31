@@ -8,10 +8,8 @@ const props = defineProps(["id"]);
 const htmlContent = ref("")
 
 const fetchMarkdown = async (id) => {
-  console.log(id);
   const response = await fetch(`/guides/${id}.md`);
   const text = await response.text();
-  console.log(text);
   htmlContent.value = markdown.render(text);
 }
 
