@@ -94,31 +94,3 @@ watch(props, (newProps) => {
   </div>
 </template>
 
-<style>
-#markdown-content h1 {
-  font-family: "MedievalSharp", cursive;
-  font-size: 2.5rem;
-  color: #fbbf24;
-}
-
-/* Add a media query for small screens
-@media screen and (max-width: 600px) {
-  #markdown-content h1 {
-    font-size: 1.5rem;
-  }
-}
-*/
-
-#markdown-content p {
-  font-family: "Libre Baskerville", serif;
-  font-size: 1rem;
-  padding-bottom: 1rem;
-  color: #1f2937;
-}
-
-#markdown-content h2 {
-  font-family: "MedievalSharp", cursive;
-  font-size: 2rem;
-  color: #fbbf24;
-}
-</style>

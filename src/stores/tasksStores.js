@@ -154,6 +154,39 @@ export const useTasksStore = defineStore("tasks", {
     getTaskById: (state) => {
       return (id) => state.tasks.find((task) => task.id === id);
     },
+    topologicalSortTasks: (state) => {
+      const tasks = state.tasks;
+      const graph = new Map();
+      tasks.forEach((task) => {
+        graph.set(task.id, { data: task, edges: new Set() });
+      });
+      tasks.forEach((task) => {
+        if (task.required) {
+          task.required.forEach((dependencyId) => {
+            if (graph.has(dependencyId)) {
+              graph.get(dependencyId).edges.add(task.id);
+            }
+          });
+        }
+      });
+      const result = [];
+      const visited = new Set();
+      const temp = new Set();
+      const visit = (id) => {
+        if (temp.has(id)) {
+          throw new Error("Tasks have circular dependencies");
+        }
+        if (!visited.has(id)) {
+          temp.add(id);
+          graph.get(id).edges.forEach(visit);
+          visited.add(id);
+          temp.delete(id);
+          result.push(graph.get(id).data);
+        }
+      };
+      tasks.forEach((task) => visit(task.id));
+      return result;
+    },
   },
   actions: {
     async fetchMarkdown(taskId, markdownFile) {

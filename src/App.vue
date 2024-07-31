@@ -4,15 +4,17 @@ import BaseModal from "./components/BaseModal.vue";
 import { ref, onMounted } from "vue";
 import TasksItem from "./components/TasksItem.vue";
 import { useTasksStore } from "./stores/tasksStores.js";
+import TasksFlow from "./components/TasksFlow.vue";
+import mermaid from "mermaid";
 
 const showModal = ref(false);
 const currentTaskId = ref("");
 const handleClickEvent = (id) => {
   currentTaskId.value = id;
 };
+const tasksStore = useTasksStore();
 
 onMounted(async () => {
-  const tasksStore = useTasksStore();
   const fetchPromises = tasksStore.getTasks.map((task) =>
     tasksStore.fetchMarkdown(task.id, `guides/${task.id}.md`),
   );
@@ -40,12 +42,8 @@ onMounted(async () => {
       Panduan
     </button>
   </header>
-  <main>
-    <TasksItem
-      id="revisidosen"
-      @onclick="handleClickEvent"
-      @click="showModal = true"
-    />
+  <main class="flex flex-col gap-10">
+    <TasksFlow />
   </main>
   <BaseModal
     :show="showModal"
