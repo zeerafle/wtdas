@@ -4,7 +4,7 @@ const time = endTime - new Date().getTime()
 </script>
 
 <template>
-  <nav class="flex bg-prairie-sand p-2 text-left overflow-hidden relative">
+  <nav class="flex p-2 text-left bg-zinc-800">
     <span ></span>
     <vue-countdown :time="time" :interval="100" v-slot="{ days, hours }" class="font-medieval-sharp text-white p-1.5 text-wrap">
       Wisuda Gelombang 3 (September) dalam {{ days }} Hari, {{ hours }} Jam.
