@@ -20,7 +20,7 @@ onMounted(() => {
 
 <template>
   <dialog :id="props.id" class="modal modal-bottom sm:modal-middle">
-    <div class="modal-box"> 
+    <div class="modal-box">
       <div id="markdown-content" v-html="htmlContent"></div>
       <div class="modal-action">
         <form method="dialog">

@@ -85,8 +85,9 @@ const theme = computed(() => {
 <template>
   <div class="w-full px-10 flex items-center justify-center">
     <div class="w-full max-w-4xl">
-      <VueMermaidString :value="diagram" :options="{ securityLevel: 'loose', theme: theme }" @node-click="nodeClick"
-        class="w-full h-auto" />
+      <VueMermaidString :value="diagram"
+        :options="{ securityLevel: 'loose', theme: theme, fontFamily: 'Libre Baskerville' }" @node-click="nodeClick"
+        class="w-full h-auto flex items-center justify-center" />
     </div>
   </div>
   <DialogItem id="revisidosen" />
