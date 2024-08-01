@@ -39,6 +39,7 @@ const showSideQuestBtn = ref(true)
           <li><a>Pas foto</a></li>
           <li><a>Bebas pustaka perpus Unmul</a></li>
           <li><a>Sumbang buku perpus Unmul</a></li>
+          <li><a>Beli Toga</a></li>
         </ul>
       </div>
     </div>

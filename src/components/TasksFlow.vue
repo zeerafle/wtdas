@@ -7,19 +7,22 @@ import DialogItem from "./DialogItem.vue";
 const diagram = computed(() => endent`
   graph TB
     burncd["Burn CD"]
-    fcskripsi["FC Skripsi"]
-    fcsuratkti["Submit KTI ke perpus Unmul"]
+    fcskripsi["Fotocopy Skripsi"]
+    submitkti["Submit KTI\nke perpus Unmul"]
     jilidskripsi["Jilid skripsi"]
     revisidosen["Revisi dosen pembimbing"]
     revisisekdekan["Revisi sekertaris Dekan"]
     skbebaspustakateknik["Sumbang buku & \nSkripsi ke perpus Teknik"]
     ttddekanskripsi["Tanda tangan Dekan"]
-    ttddospemskripsi["Tanda tangan dosen pembimbing"]
+    ttddospemskripsi["Tanda tangan\ndosen pembimbing"]
     ttdkaprodiskripsi["Paraf kaprodi"]
     ttdkeaslianskripsi["Tanda tangan bermaterai"]
     ttdskripsi["Skripsi jadi"]
     skl["Surat Keterangan Lulus (SKL)"]
-    ttdbukukaprodi["Tanda tangan kaprodi di\nform sumbang buku perpus Teknik"]
+    ttdbukukaprodi["Form sumbang buku"]
+    scanskripsi["Scan lembaran Skripsi"]
+    daftarwisuda["Daftar Wisuda"]
+    wisuda["Wisuda"]
 
     revisidosen --> revisisekdekan
     revisisekdekan --> jilidskripsi
@@ -29,19 +32,36 @@ const diagram = computed(() => endent`
     ttdkaprodiskripsi ---> ttddekanskripsi
     ttdkeaslianskripsi --> ttddekanskripsi
     ttddekanskripsi --> ttdskripsi
-    ttdskripsi --> burncd
-    ttdskripsi ----> fcskripsi
-    ttdskripsi --> fcsuratkti
+    ttdskripsi --> scanskripsi
+    scanskripsi --> burncd
+    ttdskripsi --> fcskripsi
+    scanskripsi -. "Jika punya scanner" .-> submitkti
     ttdbukukaprodi --> skbebaspustakateknik
     burncd ---> skbebaspustakateknik
+    fcskripsi ----> skbebaspustakateknik
+    burncd --> submitkti
 
-    fcskripsi --> skbebaspustakateknik
-    fcsuratkti ----> skl
+    submitkti ----> skl
     skbebaspustakateknik --> skl
+
+    skl --> daftarwisuda
+    daftarwisuda --> wisuda
     
     click revisisekdekan
     click revisidosen
     click jilidskripsi
+    click ttddospemskripsi
+    click ttdkaprodiskripsi
+    click ttdkeaslianskripsi
+    click ttddekanskripsi
+    click ttdskripsi
+    click scanskripsi
+    click ttdbukukaprodi
+    click skbebaspustakateknik
+    click burncd
+    click fcskripsi
+    click submitkti
+    click skl
 `)
 
 const nodeClick = (nodeId) => {
@@ -72,4 +92,16 @@ const theme = computed(() => {
   <DialogItem id="revisidosen" />
   <DialogItem id="revisisekdekan" />
   <DialogItem id="jilidskripsi" />
+  <DialogItem id="ttddospemskripsi" />
+  <DialogItem id="ttdkaprodiskripsi" />
+  <DialogItem id="ttdkeaslianskripsi" />
+  <DialogItem id="ttddekanskripsi" />
+  <DialogItem id="ttdskripsi" />
+  <DialogItem id="scanskripsi" />
+  <DialogItem id="ttdbukukaprodi" />
+  <DialogItem id="skbebaspustakateknik" />
+  <DialogItem id="burncd" />
+  <DialogItem id="fcskripsi" />
+  <DialogItem id="submitkti" />
+  <DialogItem id="skl" />
 </template>

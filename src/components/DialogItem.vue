@@ -59,4 +59,10 @@ onMounted(() => {
   font-size: 2rem;
   color: #fbbf24;
 }
+
+#markdown-content ul {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  list-style-type: disc;
+}
 </style>
