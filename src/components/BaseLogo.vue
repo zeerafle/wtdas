@@ -32,6 +32,7 @@
       0 0 100px var(--shadow-color),
       0 0 200px var(--shadow-color);
   }
+
   50% {
     text-shadow:
       -1px -1px 1px var(--shadow-color-light),
@@ -48,6 +49,7 @@
       0 0 110px var(--shadow-color),
       0 0 210px var(--shadow-color);
   }
+
   100% {
     text-shadow:
       -1px -1px 1px var(--shadow-color-light),

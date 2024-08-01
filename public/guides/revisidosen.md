@@ -1,5 +1,3 @@
-# Revisi Dosen Pembimbing
+# Revisi Sang Guru Pembimbing
 
-Ini adalah tahap pertama yang harus dilakukan setelah sidang. Segera revisi skripsimu sesuai dengan masukan yang didapat
-saat sidang. Setelah revisi selesai, hubungi dan temui dosen pembimbing. Jika masih ada revisi, ulangi langkah ini
-sampai dosen pembimbing memberikan persetujuan.
+Tahapan pertama ini mesti diselenggarakan usai sidang. Segera lakukan revisi atas naskah skripsimu menurut masukan yang diperoleh saat sidang. Usai revisi selesai, hubungi serta temui Sang Guru Pembimbing. Apabila masih ada perbaikan, ulangi langkah ini hingga Sang Guru Pembimbing memberikan restu.

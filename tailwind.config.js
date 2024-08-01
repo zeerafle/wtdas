@@ -4,18 +4,31 @@ export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      colors: {
-        "prairie-sand": "#953b1d",
-        "irish-coffe": "#5e3921",
-        kabul: "#70443e",
-        plantation: "#2b4b50",
-        "go-ben": "#696149",
+      fontFamily: {
+        "medieval-sharp": ["MedievalSharp", "serif"],
+        serif: ["Libre\\ Baskerville", ...defaultTheme.fontFamily.serif],
       },
     },
-    fontFamily: {
-      "medieval-sharp": ["MedievalSharp", "serif"],
-      serif: ["Libre\\ Baskerville", ...defaultTheme.fontFamily.serif],
-    },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          "primary": "#953b1d",
+          "secondary": "#5e3921",
+          "accent": "#70443e",
+          "neutral": "#FFF2F2",
+          "base-100": "#ffffff",
+          "info": "#51829B",
+          "success": "#A5DD9B",
+          "warning": "#A5DD9B",
+          "error": "#D37676",
+        }
+      },
+      'dark'
+    ]
+  }
 };
